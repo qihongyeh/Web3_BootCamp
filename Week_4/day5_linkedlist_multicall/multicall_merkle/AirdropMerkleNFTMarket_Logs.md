@@ -1,0 +1,50 @@
+Ran 1 test for test/AirdropMerkleNFTMarket.t.sol:AirdropMerkleNFTMarketTest
+[PASS] test_AirdropMerkleNFTMarket() (gas: 171839)
+Logs:
+  buyer:  0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02
+  buyerKey:  70610249916430166975309652238470544059621991469804518216946528403450140474287
+
+Traces:
+  [171839] AirdropMerkleNFTMarketTest::test_AirdropMerkleNFTMarket()
+    ├─ [2616] MyToken::nonces(buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02]) [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [430] MyToken::DOMAIN_SEPARATOR() [staticcall]
+    │   └─ ← [Return] 0x64005453fad28e4e2aa67dbcfe309eb39f435acb303e50778dd095b941a6e8e9
+    ├─ [0] VM::sign("<pk>", 0xb16ea340d62000ecee05a5643a3ac761ad5737ea3adcb1029128c2832ddfe1af) [staticcall]
+    │   └─ ← [Return] 28, 0x2f7109752ed82e3cdaabf2c02d5c1ea5d0a3f23527e7f151ee61433c7c0e65d7, 0x670785c967cfb95b327fb2f2c29d97a5382295bf4383a13da99210154017945b
+    ├─ [0] VM::prank(buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02])
+    │   └─ ← [Return] 
+    ├─ [136648] AirdropMerkleNFTMarket::multicall([0xb7bebb5e000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000015181000000000000000000000000000000000000000000000000000000000000001c2f7109752ed82e3cdaabf2c02d5c1ea5d0a3f23527e7f151ee61433c7c0e65d7670785c967cfb95b327fb2f2c29d97a5382295bf4383a13da99210154017945b, 0x00fd61e400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000272155ab19f64defdca605292f85d05e62580c41852b1bff9f02bd9cf4c4ac1ee66af34d373b909013012f47c2e8fcf962ed49c30d72ed525b8867e5fb5f9acbd])
+    │   ├─ [52553] AirdropMerkleNFTMarket::permitPrePay(10, 86401 [8.64e4], 28, 0x2f7109752ed82e3cdaabf2c02d5c1ea5d0a3f23527e7f151ee61433c7c0e65d7, 0x670785c967cfb95b327fb2f2c29d97a5382295bf4383a13da99210154017945b) [delegatecall]
+    │   │   ├─ [49484] MyToken::permit(buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD], 10, 86401 [8.64e4], 28, 0x2f7109752ed82e3cdaabf2c02d5c1ea5d0a3f23527e7f151ee61433c7c0e65d7, 0x670785c967cfb95b327fb2f2c29d97a5382295bf4383a13da99210154017945b)
+    │   │   │   ├─ [3000] PRECOMPILES::ecrecover(0xb16ea340d62000ecee05a5643a3ac761ad5737ea3adcb1029128c2832ddfe1af, 28, 21458422876697655818475020602950323158757607588049703335347990070104695924183, 46601514695675908693717235177199591313815103891538570367112143455442762699867) [staticcall]
+    │   │   │   │   └─ ← [Return] 0x0000000000000000000000000ff93edfa7fb7ad5e962e4c0edb9207c03a0fe02
+    │   │   │   ├─ emit Approval(owner: buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], spender: AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD], value: 10)
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ emit PermitPrePay(from: buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], to: AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD], value: 10, deadline: 86401 [8.64e4])
+    │   │   └─ ← [Return] true
+    │   ├─ [81110] AirdropMerkleNFTMarket::claimNFT([0x72155ab19f64defdca605292f85d05e62580c41852b1bff9f02bd9cf4c4ac1ee, 0x66af34d373b909013012f47c2e8fcf962ed49c30d72ed525b8867e5fb5f9acbd], 1, 10) [delegatecall]
+    │   │   ├─ [2576] MyNFT::ownerOf(1) [staticcall]
+    │   │   │   └─ ← [Return] AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD]
+    │   │   ├─ [30862] MyToken::transferFrom(buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], seller: [0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174], 5)
+    │   │   │   ├─ emit Transfer(from: buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], to: seller: [0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174], value: 5)
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   │   ├─ [35959] MyNFT::transferFrom(AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD], buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], 1)
+    │   │   │   ├─ emit Transfer(from: AirdropMerkleNFTMarket: [0x5366E6565E7d6c1705BD83898D7F0134190BDFaD], to: buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], tokenId: 1)
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ emit ClaimNFT(buyer: buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], tokenId: 1, price: 10)
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] [0x0000000000000000000000000000000000000000000000000000000000000001, 0x0000000000000000000000000000000000000000000000000000000000000001]
+    ├─ [576] MyNFT::ownerOf(1) [staticcall]
+    │   └─ ← [Return] buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02]
+    ├─ [0] VM::assertEq(buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02], buyer: [0x0fF93eDfa7FB7Ad5E962E4C0EdB9207C03a0fe02]) [staticcall]
+    │   └─ ← [Return] 
+    ├─ [563] MyToken::balanceOf(seller: [0xDFa97bfe5d2b2E8169b194eAA78Fbb793346B174]) [staticcall]
+    │   └─ ← [Return] 5
+    ├─ [0] VM::assertEq(5, 5) [staticcall]
+    │   └─ ← [Return] 
+    └─ ← [Stop] 
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 1.34ms (621.00µs CPU time)
+
+Ran 1 test suite in 1.00s (1.34ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
